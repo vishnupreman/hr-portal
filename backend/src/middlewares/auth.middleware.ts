@@ -26,7 +26,7 @@ export const authenticate = (req: AuthRequest, res: Response, next: NextFunction
     req.user = decoded;
     next();
   } catch {
-    return res.status(403).json({ message: "Invalid or expired token" });
+    return res.status(401).json({ message: "Invalid or expired token" });
   }
 };
 
@@ -40,7 +40,6 @@ export const authorize = (roles: UserRole[]) => {
     if (!roles.includes(req.user.role)) {
       return res.status(403).json({ message: "Forbidden: Insufficient role" });
     }
-
     next();
   };
 };

@@ -11,13 +11,15 @@ interface AuthState {
 
 export const useAuthStore = create<AuthState>((set) => ({
   isAuthenticated: !!localStorage.getItem('accessToken'),
-  role: null,
+  role: localStorage.getItem('role') as Role | null,
   login: (accessToken, role) => {
     localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('role', role);
     set({ isAuthenticated: true, role });
   },
   logout: () => {
     localStorage.removeItem('accessToken');
+    localStorage.removeItem('role');
     set({ isAuthenticated: false, role: null });
   },
 }));

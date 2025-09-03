@@ -78,11 +78,11 @@ export class AuthController {
   static async refresh(req: Request, res: Response) {
     try {
       const refreshToken = req.cookies.refreshToken;
-      const token = await AuthService.refresh(refreshToken);
-      res.json(token);
+      const {accessToken} = await AuthService.refresh(refreshToken);
+      res.json({accessToken});
     } catch (err: any) {
       res.status(401).json({ message: err.message });
-    }
+    } 
   }
 
   // ----------------- LOGOUT -----------------
