@@ -15,7 +15,7 @@ const app = express();
 
 
 app.use(morgan("dev"));
-app.use(cors({ origin: "http://localhost:5173", credentials: true })); 
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -38,7 +38,7 @@ AppDataSource.initialize()
   })
   .catch((err) => {
     console.error("❌ Error during Data Source initialization:", err);
-  });
+});
 
 
  
